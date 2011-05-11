@@ -1,0 +1,26 @@
+CREATE TABLE "Quest" 
+(
+	"id"						INTEGER primary key NOT NULL,
+	"title"						TEXT NOT NULL,
+	"quest_type"				INTEGER NOT NULL,
+	"quest_level"				INTEGER NOT NULL,
+	"time_limit"				INTEGER NOT NULL,
+	"class_required"			INTEGER,
+	"minimum_level"				INTEGER NOT NULL,
+	"suggested_players"			INTEGER NOT NULL,
+	"explanation"				TEXT NOT NULL,
+	"acceptance_speech"			TEXT NOT NULL,
+	"congratulations_speech"	TEXT NOT NULL,
+	"gold_gained"				INTEGER NOT NULL,
+	"xp_gained"					INTEGER NOT NULL,
+	"item_given"				INTEGER foreign key ("id") REFERENCES "Item"("id"),
+	"item_gained"				INTEGER foreign key ("id") REFERENCES "Item"("id"),
+	"item_use"					INTEGER foreign key ("id") REFERENCES "Item"("id"),
+	"item_collect"				INTEGER foreign key ("id") REFERENCES "Item"("id"),
+	"item_collect_quantity"		INTEGER NOT NULL,
+	"target_creature"			INTEGER foreign key ("id") REFERENCES "Creature"("id"),
+	"target_creature_quantity"	INTEGER NOT NULL,
+	"in_position"				INTEGER foreign key ("id") REFERENCES "Position"("id"),
+	"previous_quest"			INTEGER foreign key ("id") REFERENCES "Quest"("id"),
+	"next_quest"				INTEGER foreign key ("id") REFERENCES "Quest"("id")
+);
